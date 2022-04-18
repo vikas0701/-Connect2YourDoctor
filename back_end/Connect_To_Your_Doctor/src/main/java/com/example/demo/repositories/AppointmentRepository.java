@@ -14,7 +14,7 @@ import com.example.demo.entities.Patient;
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {
 
-	@Query("select a from Appointment a where doctor_id = :d and status = 'scheduled' and appointmentDate > :date1")
+	@Query("select a from Appointment a where doctor_id = :d and status = 'scheduled' and appointmentDate >= :date1")
 	List<Appointment> getAppointmentsByDoctorId(Doctor d, Date date1);
 
 	@Query("select a from Appointment a where doctor_id = :d and appointmentDate = :date1")
@@ -23,7 +23,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 	@Query("select a.appointmentTime from Appointment a where doctor_id= :d and appointmentDate= :date")
 	List<Object> getBookedAppointmentsByDoctorIdandDate(Doctor d, Date date);
 
-	@Query("select a from Appointment a where patient_id= :p and status = 'scheduled' and appointmentDate > :date1")
+	@Query("select a from Appointment a where patient_id= :p and status = 'scheduled' and appointmentDate >= :date1")
 	List<Appointment> getCurrentAppointmentsByPatientId(Patient p, Date date1);
 
 	@Query("select a from Appointment a where patient_id= :p and appointmentDate < :date1")
